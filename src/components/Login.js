@@ -7,7 +7,7 @@ import SarjalistUser from './SarjalistUser';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import Changesarjas from './Changesarjas';
 import Logout from './Logout.js';
-
+import Snackbar from '@material-ui/core/Snackbar';
 
 
 class Login extends Component {
@@ -15,11 +15,15 @@ class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {username: '', password: '', role: '',
-          isAuthenticated: false};
+          isAuthenticated: false, open: false};
       }
     
       handleChange = (event) => {
         this.setState({[event.target.name] : event.target.value});
+      }
+
+      handleClose = (event) => {
+        this.setState({ open: false });
       }
 
       fetchrole = (username) => {
@@ -58,6 +62,9 @@ class Login extends Component {
             this.setState({isAuthenticated: true});
             this.fetchrole(user.username);
           }
+          else {
+            this.setState({open: true});
+          }
         })
         .catch(err => console.error(err)) 
       }
@@ -70,6 +77,7 @@ class Login extends Component {
       }
 
     render() {
+      
         if (this.state.isAuthenticated === true && this.state.role === 'admin') {
           return (
           <div>
@@ -99,6 +107,10 @@ class Login extends Component {
         } else {
           return (
             <div>
+              <Snackbar 
+              open={this.state.open} onClose={this.handleClose} 
+              autoHideDuration={1500} 
+              message='Väärä käyttäjätunnus tai salasana' />
               <br/> 
               <TextField label="Käyttäjätunnus" type="text" name="username" 
                placeholder="Username" variant="outlined"
