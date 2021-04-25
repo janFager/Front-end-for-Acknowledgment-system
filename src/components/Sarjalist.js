@@ -454,7 +454,7 @@ export default function Sarjalist(props){
               <ListItemIcon>
                 <CreateIcon  />            
           </ListItemIcon>
-              <ListItemText primary={"Muuta sarjoja"} />              
+              <ListItemText primary={"Muokkaa sarjoja"} />              
             </ListItem>
         </List>
       <Divider />

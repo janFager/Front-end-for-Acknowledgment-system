@@ -413,7 +413,7 @@ export default function Changesarjas(props){
               <ListItemIcon>
                 <CreateIcon  />            
           </ListItemIcon>
-              <ListItemText primary={"Muuta sarjoja"} />              
+              <ListItemText primary={"Muokkaa sarjoja"} />              
             </ListItem>
        
         </List>
